@@ -1,0 +1,56 @@
+spring:
+  profiles:
+    active: development
+  application:
+    name: restroverse-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: restroverse
+        predicates:
+        - Path=/restroverse/**
+        filters:
+        - StripPrefix=1
+        - AuthenticationFilter
+        uri: ${services.url.restroverse}
+      - id: inventory
+        predicates:
+          - Path=/inventory/**
+        filters:
+          - StripPrefix=1
+          - AuthenticationFilter
+        uri: ${services.url.inventory}
+
+jwt:
+  tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+
+---
+spring:
+  config:
+    activate:
+      on-profile: development
+
+server:
+  port: 5002
+
+
+services:
+  url:
+    restroverse: http://localhost:5000
+    inventory: http://localhost:5001
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: staging
+
+server:
+  port: 5000
+
+
+services:
+  url:
+    restroverse: https://api.restropia.com
+    inventory: https://inventory.restropia.com/

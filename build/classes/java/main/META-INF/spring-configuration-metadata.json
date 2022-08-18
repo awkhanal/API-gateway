@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "jwt",
+      "type": "com.ycore.restroversegateway.configuration.JwtConfig",
+      "sourceType": "com.ycore.restroversegateway.configuration.JwtConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "jwt.token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.ycore.restroversegateway.configuration.JwtConfig"
+    }
+  ],
+  "hints": []
+}
