@@ -2,20 +2,20 @@ spring:
   profiles:
     active: development
   application:
-    name: restroverse-gateway
+    name: API-gateway
   cloud:
     gateway:
       routes:
-      - id: restroverse
+      - id: Restaurant-M-S
         predicates:
-        - Path=/restroverse/**
+        - Path=/Restaurant-M-S/**
         filters:
         - StripPrefix=1
         - AuthenticationFilter
         uri: ${services.url.restroverse}
-      - id: inventory
+      - id: Restaurant-M-S
         predicates:
-          - Path=/inventory/**
+          - Path=/Restaurant-M-S/**
         filters:
           - StripPrefix=1
           - AuthenticationFilter
@@ -36,21 +36,8 @@ server:
 
 services:
   url:
-    restroverse: http://localhost:5000
-    inventory: http://localhost:5001
+    Restaurant-M-S: http://localhost:5000
 
 
----
-spring:
-  config:
-    activate:
-      on-profile: staging
-
-server:
-  port: 5000
 
 
-services:
-  url:
-    restroverse: https://api.restropia.com
-    inventory: https://inventory.restropia.com/
